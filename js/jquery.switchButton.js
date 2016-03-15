@@ -24,8 +24,8 @@
  *
  * 		*****dom节点属性配置优先级高于js里的配置*****
  *
- * @author zhengchj
- * @mail zhengchj@neusoft.com
+ * @author AfterWin
+ * @mail CJ_Zheng1023@hotmail.com
  *
  *
  *
@@ -42,8 +42,8 @@
 
     /**
      * 按钮组对象
-     * @author zhengchj
-     * @mail zhengchj@neusoft.com
+     * @author AfterWin
+     * @mail CJ_Zheng1023@hotmail.com
      */
     var SwitchButtonGroup=function(){
         this.buttons=[];
@@ -52,8 +52,8 @@
 
         /**
          * 设置按钮关闭
-         * @author zhengchj
-         * @mail zhengchj@neusoft.com
+         * @author AfterWin
+         * @mail CJ_Zheng1023@hotmail.com
          * @method public
          */
         setUnActive:function(callBack){
@@ -65,8 +65,8 @@
         },
         /**
          * 设置按钮开启
-         * @author zhengchj
-         * @mail zhengchj@neusoft.com
+         * @author AfterWin
+         * @mail CJ_Zheng1023@hotmail.com
          * @method public
          */
         setActive:function(callBack){
@@ -78,8 +78,8 @@
         },
         /**
          * 获取所有开启按钮
-         * @author zhengchj
-         * @mail zhengchj@neusoft.com
+         * @author AfterWin
+         * @mail CJ_Zheng1023@hotmail.com
          * @method public
          * @return SwitchButtonGroup  按钮组对象
          */
@@ -96,8 +96,8 @@
         },
         /**
          * 获取所有关闭按钮
-         * @author zhengchj
-         * @mail zhengchj@neusoft.com
+         * @author AfterWin
+         * @mail CJ_Zheng1023@hotmail.com
          * @method public
          * @return SwitchButtonGroup  按钮组对象
          */
@@ -119,8 +119,8 @@
 
     /**
      * 按钮对象
-     * @author zhengchj
-     * @mail zhengchj@neusoft.com
+     * @author AfterWin
+     * @mail CJ_Zheng1023@hotmail.com
      */
     var SwitchButton=function(target,options){
         this._init(target,options);
@@ -131,6 +131,8 @@
     $.extend(SwitchButton.prototype,{
         /**
          * 构造按钮
+         * @author AfterWin
+         * @mail CJ_Zheng1023@hotmail.com
          * @param target   按钮jquery对象
          * @param op       配置参数
          * @private
@@ -166,6 +168,8 @@
         },
         /**
          * 开启按钮action
+         * @author AfterWin
+         * @mail CJ_Zheng1023@hotmail.com
          * @param callback   回调函数
          * @private
          */
@@ -191,6 +195,8 @@
         },
         /**
          * 关闭按钮action
+         * @author AfterWin
+         * @mail CJ_Zheng1023@hotmail.com
          * @param callback   回调函数
          * @private
          */
@@ -210,7 +216,14 @@
     })
 
 
-
+    /**
+     * 扩展jquery原型链
+     *
+     * @author AfterWin
+     * @mail CJ_Zheng1023@hotmail.com
+     * @param options     参数配置
+     * @returns {SwitchButtonGroup}
+     */
     $.fn.switchButton=function(options){
         var switchButtonGroup=new SwitchButtonGroup();
         $(this).each(function(){
