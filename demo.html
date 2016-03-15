@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="css/jquery.switchButton.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div>
+    <a data-btn-group="group1" data-onName="启用" data-offName="停用" data-defaultState="on" data-whenOn="whenOn" data-whenOff="whenOff"></a>
+    <a data-btn-group="group1" data-onName="启用" data-offName="停用" data-defaultState="off" data-whenOn="whenOn" data-whenOff="whenOff"></a>
+</div>
+<div>
+    <a data-btn-group="group2"></a>
+    <a data-btn-group="group2"></a>
+    <a data-btn-group="group2"></a>
+</div>
+
+
+
+
+<script src="js/jquery-1.8.3.js"></script>
+<script src="js/jquery.switchButton.js"></script>
+
+<script>
+    function whenOn(obj){
+        alert("on")
+    }
+    function whenOff(obj){
+        alert("off")
+    }
+    function beforeOn(){
+        btnGroup.getAllActive().setUnActive();
+    }
+    function beforeOff(){
+        alert("至少开启一个");
+    }
+    var btnGroup;
+    $(function(){
+        $("[data-btn-group='group1']").switchButton();
+        btnGroup=$("[data-btn-group='group2']").switchButton({
+            beforeOn:beforeOn,
+            beforeOff:beforeOff,
+            canOff:false
+        });
+    })
+</script>
+</body>
+</html>

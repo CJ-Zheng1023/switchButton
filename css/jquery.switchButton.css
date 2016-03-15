@@ -1,0 +1,55 @@
+.switch-button-bar{
+    position: relative;
+    display:inline-block;
+    *display:inline;
+    *zoom:1;
+    background-image: url("images/button-bar.png");
+    width: 56px;
+    height: 24px;
+    cursor: pointer;
+}
+.switch-button-bar.active{
+    background-image: url("images/button-bar-active.png");
+}
+.switch-button-bar .switch-button{
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    top: 1px;
+    background-image: url("images/button-icon.png");
+    z-index: 10;
+}
+.switch-button-bar.active .switch-button{
+    background-image: url("images/button-active-icon.png");
+}
+.switch-button-bar span{
+    position: absolute;
+    font-size: 12px;
+    width: 24px;
+    height: 14px;
+    top: 50%;
+    margin-top: -7px;
+    z-index: 2;
+    overflow: hidden;
+    line-height: 14px;
+
+}
+.switch-button-bar span.span-on-name{
+    display: none;
+    left: 6px;
+}
+.switch-button-bar.active span.span-on-name{
+    display:inline-block;
+    *display:inline;
+    *zoom:1;
+
+}
+.switch-button-bar span.span-off-name{
+    display:inline-block;
+    *display:inline;
+    *zoom:1;
+    right: 6px;
+}
+.switch-button-bar.active span.span-off-name{
+    display: none;
+}
