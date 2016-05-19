@@ -15,6 +15,9 @@
     <a data-btn-group="group2"></a>
     <a data-btn-group="group2"></a>
 </div>
+<div>
+    <a data-btn-group="group3" data-onName="扩 展" data-offName="扩 展" data-defaultState="on" data-whenOn="whenOn" data-whenOff="whenOff" data-theme="orange"></a>
+</div>
 
 
 
@@ -43,6 +46,7 @@
             beforeOff:beforeOff,
             canOff:false
         });
+        $("[data-btn-group='group3']").switchButton();
     })
 </script>
 </body>

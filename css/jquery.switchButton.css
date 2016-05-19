@@ -25,13 +25,13 @@
 .switch-button-bar span{
     position: absolute;
     font-size: 12px;
-    width: 24px;
     height: 14px;
     top: 50%;
     margin-top: -7px;
     z-index: 2;
     overflow: hidden;
     line-height: 14px;
+    text-align: center;
 
 }
 .switch-button-bar span.span-on-name{
@@ -53,3 +53,18 @@
 .switch-button-bar.active span.span-off-name{
     display: none;
 }
+
+/********* orange style start *********/
+.switch-button-bar.orange{
+    background-image: url("images/button-bar-orange.png");
+    width: 78px;
+}
+.switch-button-bar.orange.active{
+    background-image: url("images/button-bar-orange-active.png");
+}
+.switch-button-bar.orange span.span-on-name{
+    color: #fff;
+}
+
+
+/********* orange style end *********/

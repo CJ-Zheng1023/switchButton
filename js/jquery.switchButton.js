@@ -7,6 +7,7 @@
  *
  * 		(1)data-onName表示开启按键名，data-offName表示关闭按键名，data-defaultState表示初始开启或关闭状态 ，data-whenOn表示开启时调用的函数，data-whenOff表示关闭时调用函数
  * 	       data-beforeOn表示开启之前调用函数，data-beforeOff表示关闭之前调用函数，canOn表示是否可以手动开启，canOff表示是否可以手动关闭
+ * 	       data-theme表示应用主题 默认绿色主题 ，（现可选orange）
  * 		(2)在js里$("[data-type='switch-button']").switchButton();
  *
  * 		配置2.$("[data-type='switch-button']").switchButton({
@@ -19,6 +20,7 @@
  *              defaultState:"off"，         //表示初始开启或关闭状态  on/off   默认是off
  *              canOn:true,                  //表示是否可以手动开启
  *              canOff:true                  //表示是否可以手动关闭
+ *              theme:""                  //表示应用主题，默认为绿色主题，（现可选值有orange）
  *
  * 			  });
  *
@@ -35,10 +37,14 @@
  *
  *      2016.3.15    v2.0.0   重新架构，对外暴露几个接口
  *
+ *      2016.5.20    v2.1.0   新增ORANGE主题，可通过theme或data-theme参数配置，详情请见上方配置说明
+ *
  */
 
 
 (function($){
+
+    var LENGTH_TO_BUTTON_BAR=2;  //按钮球距离BUTTON_BAR的左右间距
 
     /**
      * 按钮组对象
@@ -141,15 +147,17 @@
             var me=this;
             var $onName=$("<span>"+op.onName+"</span>").addClass("span-on-name"),
                 $offName=$("<span>"+op.offName+"</span>").addClass("span-off-name"),
-                $button=$("<i></i>").addClass("switch-button").css("left",2);
+                $button=$("<i></i>").addClass("switch-button").css("left",LENGTH_TO_BUTTON_BAR);
             me.button=$button;
-            target.addClass("switch-button-bar");
+            target.append($onName).append($button).append($offName);
+            target.addClass("switch-button-bar").addClass(op.theme);
+            me.whenOnLeftValue=target.width()-$button.width()-LENGTH_TO_BUTTON_BAR;
+            $onName.width(me.whenOnLeftValue-LENGTH_TO_BUTTON_BAR*2);
+            $offName.width(me.whenOnLeftValue-LENGTH_TO_BUTTON_BAR*2);
             if(op.defaultState=="on"){
                 target.addClass("active");
-                $button.css("left",32);
+                $button.css("left",me.whenOnLeftValue);
             }
-
-            target.append($onName).append($button).append($offName);
             target.bind({
                 click:function(){
                     if(target.hasClass("active")){
@@ -174,9 +182,10 @@
          * @private
          */
         _turnOn:function(callback){
-            var target=this.target,op=this.options;
-            this.button.animate({
-                left:32
+            var me=this;
+            var target=me.target,op=me.options;
+            me.button.animate({
+                left:me.whenOnLeftValue
             },function(){
                 target.addClass("active");
                 if(typeof callback=="function"){
@@ -203,7 +212,7 @@
         _turnOff:function(callback){
             var target=this.target,op=this.options;
             this.button.animate({
-                left:2
+                left:LENGTH_TO_BUTTON_BAR
             },function(){
                 target.removeClass("active");
                 if(typeof callback=="function"){
@@ -236,7 +245,8 @@
                 beforeOff:function(btnObj){},
                 defaultState:"off",
                 canOn:true,
-                canOff:true
+                canOff:true,
+                theme:"default"
             }
             var me=$(this);
             var propertyConfig={
@@ -248,7 +258,8 @@
                 beforeOff:me.attr("data-beforeOff"),
                 defaultState:me.attr("data-defaultState"),
                 canOn:me.attr("data-canOn"),
-                canOff:me.attr("data-canOff")
+                canOff:me.attr("data-canOff"),
+                theme:me.attr("data-theme")
             }
             var op= $.extend(true,defaults,options||defaults,propertyConfig||defaults);
             switchButtonGroup.buttons.push(new SwitchButton(me,op));
